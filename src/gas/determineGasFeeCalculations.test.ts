@@ -132,7 +132,8 @@ describe('determineGasFeeCalculations', () => {
       it('returns a combination of the fetched fee and time estimates', async () => {
         const gasFeeEstimates = buildMockDataForFetchGasEstimates();
         mockedFetchGasEstimates.mockResolvedValue(gasFeeEstimates);
-        const estimatedGasFeeTimeBounds = buildMockDataForCalculateTimeEstimate();
+        const estimatedGasFeeTimeBounds =
+          buildMockDataForCalculateTimeEstimate();
         mockedCalculateTimeEstimate.mockReturnValue(estimatedGasFeeTimeBounds);
 
         const gasFeeCalculations = await determineGasFeeCalculations(options);
@@ -158,7 +159,8 @@ describe('determineGasFeeCalculations', () => {
           mockedFetchGasEstimatesViaEthFeeHistory.mockResolvedValue(
             gasFeeEstimates,
           );
-          const estimatedGasFeeTimeBounds = buildMockDataForCalculateTimeEstimate();
+          const estimatedGasFeeTimeBounds =
+            buildMockDataForCalculateTimeEstimate();
           mockedCalculateTimeEstimate.mockReturnValue(
             estimatedGasFeeTimeBounds,
           );

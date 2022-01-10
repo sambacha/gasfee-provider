@@ -1,1 +1,1 @@
-declare module 'ethjs-unit'
+declare module 'ethjs-unit';

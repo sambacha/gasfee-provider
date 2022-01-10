@@ -179,9 +179,8 @@ export default async function fetchGasEstimatesViaEthFeeHistory(
     numberOfBlocks: NUMBER_OF_HISTORICAL_BLOCKS_TO_FETCH,
     endBlock: latestBlock.number,
   });
-  const levelSpecificGasEstimates = calculateGasEstimatesForAllPriorityLevels(
-    recentBlocks,
-  );
+  const levelSpecificGasEstimates =
+    calculateGasEstimatesForAllPriorityLevels(recentBlocks);
   const estimatedBaseFee = fromWei(latestBlock.baseFeePerGas, 'gwei');
   const networkCongestion = await calculateNetworkCongestionLevelFrom(
     historicalBlocks,

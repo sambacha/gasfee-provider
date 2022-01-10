@@ -96,7 +96,6 @@ export function weiHexToGweiDec(hex: string) {
   return fromWei(hexWei, 'gwei').toString(10);
 }
 
-
 /**
  * Wrapper method to handle EthQuery requests.
  *
@@ -105,36 +104,36 @@ export function weiHexToGweiDec(hex: string) {
  * @param args - Arguments to send.
  * @returns Promise resolving the request.
  */
- export function query(
-    ethQuery: any,
-    method: string,
-    args: any[] = [],
-  ): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const cb = (error: Error, result: any) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        resolve(result);
-      };
-  
-      if (typeof ethQuery[method] === 'function') {
-        ethQuery[method](...args, cb);
-      } else {
-        ethQuery.sendAsync({ method, params: args }, cb);
+export function query(
+  ethQuery: any,
+  method: string,
+  args: any[] = [],
+): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const cb = (error: Error, result: any) => {
+      if (error) {
+        reject(error);
+        return;
       }
-    });
-  }
+      resolve(result);
+    };
 
-  /**
-   * Checks if a transaction is EIP-1559 by checking for the existence of
-   * maxFeePerGas and maxPriorityFeePerGas within its parameters.
-   *
-   * @param transaction - Transaction object to add.
-   * @returns Boolean that is true if the transaction is EIP-1559 (has maxFeePerGas and maxPriorityFeePerGas), otherwise returns false.
-   */
-    /**
+    if (typeof ethQuery[method] === 'function') {
+      ethQuery[method](...args, cb);
+    } else {
+      ethQuery.sendAsync({ method, params: args }, cb);
+    }
+  });
+}
+
+/**
+ * Checks if a transaction is EIP-1559 by checking for the existence of
+ * maxFeePerGas and maxPriorityFeePerGas within its parameters.
+ *
+ * @param transaction - Transaction object to add.
+ * @returns Boolean that is true if the transaction is EIP-1559 (has maxFeePerGas and maxPriorityFeePerGas), otherwise returns false.
+ */
+/**
   export const isEIP1559Transaction = (transaction: Transaction): boolean => {
     const hasOwnProp = (obj: Transaction, key: string) =>
       Object.prototype.hasOwnProperty.call(obj, key);

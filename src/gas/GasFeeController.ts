@@ -1,7 +1,4 @@
-import type {
-  NetworkController,
-  NetworkState,
-} from '@metamask/controllers';
+import type { NetworkController, NetworkState } from '@metamask/controllers';
 import {
   calculateTimeEstimate,
   fetchEthGasPriceEstimate,
@@ -294,9 +291,12 @@ export class GasFeeController extends BaseController<
     });
     this.intervalDelay = interval;
     this.pollTokens = new Set();
-    this.getCurrentNetworkEIP1559Compatibility = getCurrentNetworkEIP1559Compatibility;
-    this.getCurrentNetworkLegacyGasAPICompatibility = getCurrentNetworkLegacyGasAPICompatibility;
-    this.getCurrentAccountEIP1559Compatibility = getCurrentAccountEIP1559Compatibility;
+    this.getCurrentNetworkEIP1559Compatibility =
+      getCurrentNetworkEIP1559Compatibility;
+    this.getCurrentNetworkLegacyGasAPICompatibility =
+      getCurrentNetworkLegacyGasAPICompatibility;
+    this.getCurrentAccountEIP1559Compatibility =
+      getCurrentAccountEIP1559Compatibility;
     this.EIP1559APIEndpoint = EIP1559APIEndpoint;
     this.legacyAPIEndpoint = legacyAPIEndpoint;
     this.getChainId = getChainId;
@@ -358,7 +358,8 @@ export class GasFeeController extends BaseController<
   ): Promise<GasFeeState> {
     const { shouldUpdateState = true } = options;
     let isEIP1559Compatible;
-    const isLegacyGasAPICompatible = this.getCurrentNetworkLegacyGasAPICompatibility();
+    const isLegacyGasAPICompatible =
+      this.getCurrentNetworkLegacyGasAPICompatibility();
 
     let chainId = this.getChainId();
     if (typeof chainId === 'string' && isHexString(chainId)) {
@@ -451,7 +452,8 @@ export class GasFeeController extends BaseController<
   }
 
   private async getEIP1559Compatibility() {
-    const currentNetworkIsEIP1559Compatible = await this.getCurrentNetworkEIP1559Compatibility();
+    const currentNetworkIsEIP1559Compatible =
+      await this.getCurrentNetworkEIP1559Compatibility();
     const currentAccountIsEIP1559Compatible =
       this.getCurrentAccountEIP1559Compatibility?.() ?? true;
 

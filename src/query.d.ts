@@ -1,1 +1,1 @@
-declare module 'eth-query'
+declare module 'eth-query';

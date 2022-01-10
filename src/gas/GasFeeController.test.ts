@@ -287,9 +287,8 @@ describe('GasFeeController', () => {
       it('should call determineGasFeeCalculations again', async () => {
         setupGasFeeController();
 
-        const pollToken = await gasFeeController.getGasFeeEstimatesAndStartPolling(
-          undefined,
-        );
+        const pollToken =
+          await gasFeeController.getGasFeeEstimatesAndStartPolling(undefined);
         await gasFeeController.getGasFeeEstimatesAndStartPolling(pollToken);
 
         expect(mockedDetermineGasFeeCalculations).toHaveBeenCalledTimes(2);
@@ -298,9 +297,8 @@ describe('GasFeeController', () => {
       it('should not make more than one call to determineGasFeeCalculations per set interval', async () => {
         setupGasFeeController();
 
-        const pollToken = await gasFeeController.getGasFeeEstimatesAndStartPolling(
-          undefined,
-        );
+        const pollToken =
+          await gasFeeController.getGasFeeEstimatesAndStartPolling(undefined);
         await gasFeeController.getGasFeeEstimatesAndStartPolling(pollToken);
         await clock.nextAsync();
         await clock.nextAsync();
@@ -347,9 +345,8 @@ describe('GasFeeController', () => {
       describe('given the same token as the result of the first call', () => {
         it('should prevent calls to determineGasFeeCalculations from being made periodically', async () => {
           setupGasFeeController();
-          const pollToken = await gasFeeController.getGasFeeEstimatesAndStartPolling(
-            undefined,
-          );
+          const pollToken =
+            await gasFeeController.getGasFeeEstimatesAndStartPolling(undefined);
           await clock.nextAsync();
           expect(mockedDetermineGasFeeCalculations).toHaveBeenCalledTimes(2);
 
@@ -361,9 +358,8 @@ describe('GasFeeController', () => {
 
         it('should make it so that a second call to getGasFeeEstimatesAndStartPolling with the same token has the same effect as the inaugural call', async () => {
           setupGasFeeController();
-          const pollToken = await gasFeeController.getGasFeeEstimatesAndStartPolling(
-            undefined,
-          );
+          const pollToken =
+            await gasFeeController.getGasFeeEstimatesAndStartPolling(undefined);
           await clock.nextAsync();
           expect(mockedDetermineGasFeeCalculations).toHaveBeenCalledTimes(2);
 
@@ -393,9 +389,8 @@ describe('GasFeeController', () => {
     describe('if getGasFeeEstimatesAndStartPolling was called twice with different tokens', () => {
       it('should not prevent calls to determineGasFeeCalculations from being made periodically', async () => {
         setupGasFeeController();
-        const pollToken1 = await gasFeeController.getGasFeeEstimatesAndStartPolling(
-          undefined,
-        );
+        const pollToken1 =
+          await gasFeeController.getGasFeeEstimatesAndStartPolling(undefined);
         await gasFeeController.getGasFeeEstimatesAndStartPolling(undefined);
         await clock.nextAsync();
         expect(mockedDetermineGasFeeCalculations).toHaveBeenCalledTimes(2);
@@ -433,9 +428,8 @@ describe('GasFeeController', () => {
 
       it('should make it so that a second call to getGasFeeEstimatesAndStartPolling with the same token has the same effect as the inaugural call', async () => {
         setupGasFeeController();
-        const pollToken = await gasFeeController.getGasFeeEstimatesAndStartPolling(
-          undefined,
-        );
+        const pollToken =
+          await gasFeeController.getGasFeeEstimatesAndStartPolling(undefined);
         await clock.nextAsync();
         expect(mockedDetermineGasFeeCalculations).toHaveBeenCalledTimes(2);
 
@@ -464,9 +458,8 @@ describe('GasFeeController', () => {
     describe('if getGasFeeEstimatesAndStartPolling was called multiple times with the same token (thereby restarting the polling once)', () => {
       it('should prevent calls to determineGasFeeCalculations from being made periodically', async () => {
         setupGasFeeController();
-        const pollToken = await gasFeeController.getGasFeeEstimatesAndStartPolling(
-          undefined,
-        );
+        const pollToken =
+          await gasFeeController.getGasFeeEstimatesAndStartPolling(undefined);
         await gasFeeController.getGasFeeEstimatesAndStartPolling(pollToken);
         await clock.nextAsync();
         expect(mockedDetermineGasFeeCalculations).toHaveBeenCalledTimes(3);
@@ -479,9 +472,8 @@ describe('GasFeeController', () => {
 
       it('should make it so that another call to getGasFeeEstimatesAndStartPolling with a previously generated token has the same effect as the inaugural call', async () => {
         setupGasFeeController();
-        const pollToken = await gasFeeController.getGasFeeEstimatesAndStartPolling(
-          undefined,
-        );
+        const pollToken =
+          await gasFeeController.getGasFeeEstimatesAndStartPolling(undefined);
         await gasFeeController.getGasFeeEstimatesAndStartPolling(pollToken);
         await clock.nextAsync();
         expect(mockedDetermineGasFeeCalculations).toHaveBeenCalledTimes(3);

@@ -1,10 +1,9 @@
+export * from './GasFeeController';
 
-export * from  './GasFeeController';
+export * from './determineGasFeeCalculations';
 
-export * from  './determineGasFeeCalculations';
+export * from './fetchBlockFeeHistory';
 
-export * from  './fetchBlockFeeHistory';
+export * from './fetchGasEstimatesViaEthFeeHistory';
 
-export * from  './fetchGasEstimatesViaEthFeeHistory';
-
-export * from  './gas-util';
+export * from './gas-util';
